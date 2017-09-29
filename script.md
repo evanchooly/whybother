@@ -16,6 +16,8 @@
 		* some libs are better than others
 			* Scala easily leaks its scala-ness out of the api
 		* annotations to adjust bytecode to be more natural to java users
+			* @JvmName
+				* top level functions
 			* @JvmStatic
 			* @JvmOverloads
 	* Delegation
