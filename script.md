@@ -11,16 +11,27 @@
 * Why bother?
 	* functional
 		* cleaner than java's
+	* Nullability
+		* elvis
+		* let	
 	* Java interop
 		* use any JVM library you wish
 		* some libs are better than others
 			* Scala easily leaks its scala-ness out of the api
 		* annotations to adjust bytecode to be more natural to java users
 			* @JvmName
-				* top level functions
+				* top level functions	
 			* @JvmStatic
 			* @JvmOverloads
+		* http://kotlinlang.org/docs/reference/java-to-kotlin-interop.html
 	* Delegation
 		* lazy
+		* Delegates
 		* composition
 			* Listogram
+	* DSLs  [CON3170]
+		* bottlerocket
+	* coroutines
+	* Kotlin-js
+	* Kotlin-native
+		* CsvParser
