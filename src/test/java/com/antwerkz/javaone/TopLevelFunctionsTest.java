@@ -2,7 +2,7 @@ package com.antwerkz.javaone;
 
 public class TopLevelFunctionsTest {
     public void test() {
-        DemoUtils.bar();
+//        DemoUtils.bar();
         TopLevelFunctionsKt.bar();
         Foo foo;
     }
