@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter.ofPattern
 
-class Listogram(private val list: MutableList<String> = mutableListOf()): MutableList<String> by list {
+class   Listogram(private val list: MutableList<String> = mutableListOf()): MutableList<String> by list {
     val history = mutableListOf<Pair<LocalDateTime, Int>>()
     override fun add(element: String): Boolean {
         val add = list.add(element)

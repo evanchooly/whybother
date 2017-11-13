@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -12,11 +11,9 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Spliterator;
-import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.lang.String.format;
@@ -210,55 +207,40 @@ public class JavaListogram implements List<String> {
        }
 */
 
-    public void histogram() {
+    void histogram() {
         final Map<LocalDateTime, List<JavaPair<LocalDateTime, Integer>>> map =
             history.stream()
                    .collect(groupingBy(JavaPair::first));
-        final List<JavaPair<LocalDateTime, Integer>> times =
-            map.entrySet().stream()
-               .map(entry -> entry.getValue().get(entry.getValue().size() - 1))
-               .collect(toList());
-        final StringBuilder reduce = times.stream()
-                                          .map(pair -> new JavaPair<>(pair.first(), IntStream.of(pair.second())))
-                                          .reduce("", new BiFunction<U, JavaPair<LocalDateTime, IntStream>, U>() {
-                                                  @Override
-                                                  public U apply(final U u,
-                                                                 final JavaPair<LocalDateTime, IntStream> localDateTimeIntStreamJavaPair) {
-                                                      return null;
-                                                  }
-                                              },
-        () -> "*",
-                                              );
-        System.out.printf("reduce = '%s'%n", reduce);
 
-        times.forEach(pair -> {
-            char[] bars = new char[pair.second()];
-            Arrays.fill(bars, '*');
-            System.out.println(format("%s: %s", pair.first().format(ofPattern("HH:mm:ss")), new String(bars)));
-        });
-        //        System.out.print(
-        //            times
-        //                        );
-        //
-        //        System.out.println("collect = " + collect);
+        map.entrySet().stream()
+           .map(entry -> entry.getValue().get(entry.getValue().size() - 1))
+           .map(pair -> new JavaPair<>(pair.first.format(ofPattern("hh:mm:ss")), plot(pair.second)))
+           .collect(toList()).forEach(x -> System.out.printf("%s: %s\n", x.first, x.second));
+    }
 
+    private String plot(final int second) {
+        StringBuilder builder = new StringBuilder();
+        for (int x = 0; x < second; x++) {
+            builder.append("*");
+        }
+        return builder.toString();
     }
 }
 
 class JavaPair<F, S> {
-    private final F first;
-    private final S second;
+    F first;
+    S second;
 
     JavaPair(F first, S second) {
         this.first = first;
         this.second = second;
     }
 
-    public F first() {
+    F first() {
         return first;
     }
 
-    public S second() {
+    S second() {
         return second;
     }
 
