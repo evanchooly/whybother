@@ -1,8 +1,8 @@
-package com.antwerkz.javaone;
+package com.antwerkz.why;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -23,7 +23,7 @@ import static java.util.stream.Collectors.toList;
 
 public class JavaListogram implements List<String> {
     private List<String> list = new ArrayList<>();
-    private List<JavaPair<LocalDateTime, Integer>> history = new ArrayList<>();
+    private List<JavaPair<LocalTime, Integer>> history = new ArrayList<>();
 
     @Override
     public int size() {
@@ -61,14 +61,14 @@ public class JavaListogram implements List<String> {
     @Override
     public boolean add(final String s) {
         final boolean add = list.add(s);
-        history.add(new JavaPair<>(LocalDateTime.now(), size()));
+        history.add(new JavaPair<>(LocalTime.now(), size()));
         return add;
     }
 
     @Override
     public boolean remove(final Object o) {
         final boolean remove = list.remove(o);
-        history.add(new JavaPair<>(LocalDateTime.now(), size()));
+        history.add(new JavaPair<>(LocalTime.now(), size()));
         return remove;
     }
 
@@ -208,14 +208,14 @@ public class JavaListogram implements List<String> {
 */
 
     void histogram() {
-        final Map<LocalDateTime, List<JavaPair<LocalDateTime, Integer>>> map =
+        final Map<LocalTime, List<JavaPair<LocalTime, Integer>>> map =
             history.stream()
                    .collect(groupingBy(JavaPair::first));
 
         map.entrySet().stream()
            .map(entry -> entry.getValue().get(entry.getValue().size() - 1))
            .map(pair -> new JavaPair<>(pair.first.format(ofPattern("hh:mm:ss")), plot(pair.second)))
-           .collect(toList()).forEach(x -> System.out.printf("%s: %s\n", x.first, x.second));
+           .forEach(x -> System.out.printf("%s: %s\n", x.first, x.second));
     }
 
     private String plot(final int second) {

@@ -1,4 +1,4 @@
-package com.antwerkz.javaone;
+package com.antwerkz.why;
 
 import org.testng.annotations.Test;
 
@@ -19,7 +19,8 @@ public class JavaListogramTest {
         list.remove("second");
         sleep(1000);
         for (Integer i = 1; i <= 7; i++) {
-            add(list, i.toString());
+            list.add(i.toString());
+            sleep(1000);
         }
         for (Integer i = 1; i <= 7; i++) {
             list.remove(i.toString());
@@ -30,7 +31,6 @@ public class JavaListogramTest {
 
     private void add(List<String> list, String... adds) throws InterruptedException {
         Collections.addAll(list, adds);
-
         sleep(1000);
     }
 }

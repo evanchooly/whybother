@@ -1,6 +1,6 @@
-package com.antwerkz.javaone
+package com.antwerkz.why
 
-class JavaOne {
+class Companion {
     companion object {
 //        @JvmStatic
         val NAME = "JavaOne"

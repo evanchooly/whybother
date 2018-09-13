@@ -21,15 +21,15 @@
 		* annotations to adjust bytecode to be more natural to java users
 			* @JvmName
 				* top level functions	
-			* @JvmStatic
-			* @JvmOverloads
+			* @JvmStatic  (OverloadsTest)
+			* @JvmOverloads  (OverloadsTest)	
 		* http://kotlinlang.org/docs/reference/java-to-kotlin-interop.html
 	* Delegation
 		* lazy
 		* Delegates
 		* composition
 			* Listogram
-	* DSLs  [CON3170]
+	* DSLs
 		* bottlerocket
 	* coroutines
 	* Kotlin-js

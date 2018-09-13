@@ -1,4 +1,4 @@
-package com.antwerkz.javaone
+package com.antwerkz.why
 
 import org.testng.annotations.Test
 import java.lang.Thread.sleep
@@ -7,14 +7,18 @@ import java.lang.Thread.sleep
 class ListogramTest {
     fun time() {
         val list = Listogram()
-
+        val map = mutableMapOf("a" to "b")
+        map["a"] = "c"
         add(list, listOf("first", "second"))
         add(list, listOf("third", "fourth", "fifth"))
         list.remove("fourth")
         list.add("sixth")
         list.remove("second")
         sleep(1000)
-        add(list, (1..7).map { it.toString() })
+        (1..7).forEach {
+            list.add(it.toString())
+            sleep(1000)
+        }
         (2..5).forEach {
             list.remove(it.toString())
         }
@@ -27,4 +31,12 @@ class ListogramTest {
         sleep(1000)
     }
 
+
+    @Test
+    fun data() {
+        println(Person("James", 12))
+    }
+
 }
+
+data class Person(val name: String, val age: Int)
